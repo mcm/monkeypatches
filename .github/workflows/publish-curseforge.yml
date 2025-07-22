@@ -128,7 +128,7 @@ jobs:
           project_id: ${{ vars.CF_PROJECT_ID }}
           game_endpoint: minecraft
           file_path: build/libs/monkeypatches-${{ steps.get_version.outputs.version }}.jar
-          display_name: "Monkey Patches ${{ steps.get_version.outputs.version }}"
+          display_name: monkeypatches-${{ steps.get_version.outputs.version }}.jar
           game_versions: "Minecraft 1.21:${{ steps.gradle_props.outputs.minecraft_version }},NeoForge,Java 21"
           release_type: release
           changelog_type: markdown
