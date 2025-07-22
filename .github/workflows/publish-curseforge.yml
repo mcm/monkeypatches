@@ -1,0 +1,136 @@
+name: Publish to CurseForge
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags like v1.0.0, v0.3.1, etc.
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        id: build
+        run: ./gradlew build --no-daemon
+
+      - name: Upload JAR as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: monkeypatches-jar
+          path: build/libs/*.jar
+          retention-days: 30
+
+      - name: Extract version from tag
+        id: get_version
+        run: |
+          # Remove 'v' prefix from tag if present (e.g., v0.3.1 -> 0.3.1)
+          VERSION=${GITHUB_REF#refs/tags/v}
+          VERSION=${VERSION#refs/tags/}  # Remove any remaining refs/tags/ prefix
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Version: ${VERSION}"
+
+      - name: Read gradle.properties
+        id: gradle_props
+        run: |
+          # Extract mod_version from gradle.properties
+          MOD_VERSION=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2)
+          MINECRAFT_VERSION=$(grep '^minecraft_version=' gradle.properties | cut -d'=' -f2)
+          NEO_VERSION=$(grep '^neo_version=' gradle.properties | cut -d'=' -f2)
+          
+          echo "mod_version=${MOD_VERSION}" >> $GITHUB_OUTPUT
+          echo "minecraft_version=${MINECRAFT_VERSION}" >> $GITHUB_OUTPUT
+          echo "neo_version=${NEO_VERSION}" >> $GITHUB_OUTPUT
+          
+          echo "Mod version from gradle.properties: ${MOD_VERSION}"
+          echo "Minecraft version: ${MINECRAFT_VERSION}"
+          echo "NeoForge version: ${NEO_VERSION}"
+
+      - name: Verify version consistency
+        run: |
+          TAG_VERSION="${{ steps.get_version.outputs.version }}"
+          GRADLE_VERSION="${{ steps.gradle_props.outputs.mod_version }}"
+          
+          echo "Tag version: ${TAG_VERSION}"
+          echo "Gradle properties version: ${GRADLE_VERSION}"
+          
+          if [ "${TAG_VERSION}" != "${GRADLE_VERSION}" ]; then
+            echo "❌ ERROR: Version mismatch!"
+            echo "Tag version (${TAG_VERSION}) does not match mod_version in gradle.properties (${GRADLE_VERSION})"
+            echo "Please ensure the tag version matches the mod_version in gradle.properties"
+            exit 1
+          else
+            echo "✅ Version verification passed: ${TAG_VERSION}"
+          fi
+
+      - name: Extract changelog for version
+        id: changelog
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          
+          # Extract changelog for the specific version from CHANGELOG.md
+          # Look for version header like "## [0.3.1]" and extract content until next version header
+          awk -v version="$VERSION" '
+          BEGIN { found = 0; printing = 0 }
+          /^## \[/ {
+            if (found && printing) exit
+            if ($0 ~ "\\[" version "\\]") {
+              found = 1
+              printing = 1
+              next
+            }
+          }
+          found && printing { print }
+          ' CHANGELOG.md > version_changelog.txt
+          
+          # Check if we found a changelog for this version
+          if [ ! -s version_changelog.txt ]; then
+            echo "⚠️ Warning: No changelog found for version ${VERSION}"
+            echo "Using fallback changelog"
+            cat > version_changelog.txt << EOF
+          ## Changes in ${VERSION}
+          
+          See the full changelog at: https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }}
+          EOF
+          else
+            echo "✅ Found changelog for version ${VERSION}"
+          fi
+          
+          # Output the changelog content for debugging
+          echo "Changelog content:"
+          cat version_changelog.txt
+          
+          # Set the changelog as output (escape newlines for GitHub Actions)
+          {
+            echo 'changelog<<EOF'
+            cat version_changelog.txt
+            echo EOF
+          } >> $GITHUB_OUTPUT
+
+      - name: Upload to CurseForge
+        uses: itsmeow/curseforge-upload@v3
+        with:
+          token: ${{ secrets.CF_API_TOKEN }}
+          project_id: ${{ vars.CF_PROJECT_ID }}
+          game_endpoint: minecraft
+          file_path: build/libs/monkeypatches-${{ steps.get_version.outputs.version }}.jar
+          display_name: "Monkey Patches ${{ steps.get_version.outputs.version }}"
+          game_versions: "Minecraft 1.21:${{ steps.gradle_props.outputs.minecraft_version }},NeoForge,Java 21"
+          release_type: release
+          changelog_type: markdown
+          changelog: ${{ steps.changelog.outputs.changelog }}
+          relations: ""

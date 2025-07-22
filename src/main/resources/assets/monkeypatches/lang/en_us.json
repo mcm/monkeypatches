@@ -1,0 +1,10 @@
+{
+  "monkeypatches.configuration.title": "Monkey Patches Configs",
+  "monkeypatches.configuration.patches": "Enable / Disable Patches",
+  "monkeypatches.configuration.kubejs": "KubeJS Patches",
+  "monkeypatches.configuration.gh972_enabled": "Fixes for Github #972",
+  "monkeypatches.configuration.portabletanks": "Portable Tanks Patches",
+  "monkeypatches.configuration.gh12_enabled": "Fixes for Github #12",
+  "monkeypatches.configuration.section.monkeypatches.common.toml": "Monkey Patches",
+  "monkeypatches.configuration.section.monkeypatches.common.toml.title": "Monkey Patches"
+}

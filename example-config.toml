@@ -1,0 +1,36 @@
+# Configuration file for Monkey Patches
+# This file controls which patches are enabled and other mod settings.
+# 
+# Note: Patches will only load if the target mod is installed.
+# Use the startup logs to see which patches are active.
+
+[patches]
+	# KubeJS Patches
+	# Patches for the KubeJS mod
+	# These patches will only load if KubeJS is installed
+	[patches.kubejs]
+		# Enable KubeJS issue #972 patches
+		# Fixes assumptions about concrete builder types that could cause ClassCastException
+		# Includes ServerScriptManagerMixin and KubeJSModEventHandlerMixin
+		# Status in logs: ENABLED / DISABLED / MOD NOT LOADED
+		gh972_enabled = true
+
+	# Subtle Effects Patches
+	# Patches for the Subtle Effects mod
+	# These patches will only load if Subtle Effects is installed
+	[patches.subtle_effects]
+		# Enable Subtle Effects issue #113 patches
+		# Fixes NeoForge crashing with End Remastered installed
+		# Changes block ticker registration to use predicate-based registration
+		# Status in logs: ENABLED / DISABLED / MOD NOT LOADED
+		gh113_enabled = true
+
+	# PortableTanks Patches
+	# Patches for the PortableTanks mod
+	# These patches will only load if PortableTanks is installed
+	[patches.portabletanks]
+		# Enable PortableTanks issue #12 patches
+		# Fixes NullPointerException in PortableTankItem$ItemFluidHandler.getFluid()
+		# Prevents crashes when accessing fluid data from ItemStacks without proper NBT data
+		# Status in logs: ENABLED / DISABLED / MOD NOT LOADED
+		gh12_enabled = true

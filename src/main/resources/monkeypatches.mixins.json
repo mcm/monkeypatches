@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "io.mcmaster.monkeypatches.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "kubejs.GH972.KubeJSModEventHandlerMixin",
+    "kubejs.GH972.ServerScriptManagerMixin",
+    "subtle_effects.GH113.EndRemasteredCompatMixin",
+    "portabletanks.GH12.PortableTankItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "plugin": "io.mcmaster.monkeypatches.plugin.MonkeyPatchesMixinPlugin"
+}
