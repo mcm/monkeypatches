@@ -48,6 +48,16 @@ repositories {
             includeGroup "me.fallenbreath"
         }
     }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 base {
@@ -135,6 +145,8 @@ dependencies {
     
     // Bundle conditional-mixin into the mod jar
     jarJar "me.fallenbreath:conditional-mixin-neoforge:0.6.4"
+
+    implementation "curse.maven:create-stuff-additions-466792:6448012"
 
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

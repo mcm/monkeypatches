@@ -34,3 +34,13 @@
 		# Prevents crashes when accessing fluid data from ItemStacks without proper NBT data
 		# Status in logs: ENABLED / DISABLED / MOD NOT LOADED
 		gh12_enabled = true
+
+	# Create Stuff 'N Additions Patches
+	# Patches for the Create Stuff 'N Additions mod
+	# These patches will only load if Create Stuff 'N Additions is installed
+	[patches.create_sa]
+		# Enable Create Stuff 'N Additions issue #59 capabilities
+		# Adds Neoforge fluid handler capabilities to enable e.g. Create spout filling
+		# Allows jetpacks and tanks to be filled using Create spouts and other fluid systems
+		# Status in logs: ENABLED / DISABLED / MOD NOT LOADED
+		fluid_handler_capabilities_enabled = true

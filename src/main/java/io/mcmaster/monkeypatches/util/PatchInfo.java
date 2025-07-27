@@ -64,6 +64,22 @@ public class PatchInfo {
                 "Fixes assumptions about concrete builder types",
                 io.mcmaster.monkeypatches.Config.PatchConfig.isKubeJSGH972Enabled()));
 
+        // PortableTanks patches
+        logPatchGroup(new PatchGroup(
+                "PortableTanks",
+                "portabletanks",
+                "GH12",
+                "Fixes NullPointerException in fluid handling",
+                io.mcmaster.monkeypatches.Config.PatchConfig.isPortableTanksGH12Enabled()));
+
+        // PortableTanks patches
+        logPatchGroup(new PatchGroup(
+                "Create Stuff 'N Additions",
+                "create_sa",
+                "CF59",
+                "Adds fluid handler capabilities to Jetpacks and tanks",
+                io.mcmaster.monkeypatches.Config.PatchConfig.isCreateStuffAdditionsCF59Enabled()));
+
         // Future patches can be logged here
 
         MonkeyPatches.LOGGER.info("=== End Patch Status ===");

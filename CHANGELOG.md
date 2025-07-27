@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2025-07-27
+
+### Added
+- Create Stuff 'N Additions CF59 patch for fluid handler capabilities
+  - FluidCapability: Adds NeoForge fluid handler capabilities to jetpacks and tanks
+
+### Technical Details
+- Implements IFluidHandlerItem interface for jetpacks and tanks
+- Uses dual-tank system (tank 0 always water, tank 1 always fuel) with proper capacity limits
+- Fluid conversion: 1 fuel unit = 10 mB of fluid
+
 ## [0.3.1] - 2025-07-22
 
 ### Changed

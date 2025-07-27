@@ -50,6 +50,22 @@ public class Config {
                 BUILDER.pop(); // portabletanks
         }
 
+        // Create Stuff 'N Additions patches
+        static {
+                BUILDER.comment("Create Stuff 'N Additions Patches")
+                                .comment("Patches for the Create Stuff 'N Additions mod")
+                                .push("create_sa");
+        }
+
+        public static final ModConfigSpec.BooleanValue CREATESA_CF59_ENABLED = BUILDER
+                        .comment("Enable Create Stuff 'N Additions issue #59 capabilities")
+                        .comment("Adds Neoforge fluid handler capabilities to enable e.g. Create spout filling")
+                        .define("fluid_handler_capabilities_enabled", true);
+
+        static {
+                BUILDER.pop(); // create_sa
+        }
+
         // Future mod patches can be added here
         // Example:
         // static {
@@ -90,6 +106,13 @@ public class Config {
                  */
                 public static boolean isPortableTanksGH12Enabled() {
                         return PORTABLETANKS_GH12_ENABLED.get();
+                }
+
+                /**
+                 * Check if Create Stuff 'N Additions capabilities are enabled
+                 */
+                public static boolean isCreateStuffAdditionsCF59Enabled() {
+                        return CREATESA_CF59_ENABLED.get();
                 }
 
                 // Future patch check methods can be added here

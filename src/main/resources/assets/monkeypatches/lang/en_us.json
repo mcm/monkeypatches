@@ -5,6 +5,8 @@
   "monkeypatches.configuration.gh972_enabled": "Fixes for Github #972",
   "monkeypatches.configuration.portabletanks": "Portable Tanks Patches",
   "monkeypatches.configuration.gh12_enabled": "Fixes for Github #12",
+  "monkeypatches.configuration.create_sa": "Create Stuff 'N Additions Patches",
+  "monkeypatches.configuration.fluid_handler_capabilities_enabled": "Fluid Handler Capabilities (CF #59)",
   "monkeypatches.configuration.section.monkeypatches.common.toml": "Monkey Patches",
   "monkeypatches.configuration.section.monkeypatches.common.toml.title": "Monkey Patches"
 }
