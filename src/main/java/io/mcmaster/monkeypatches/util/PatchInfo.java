@@ -77,7 +77,7 @@ public class PatchInfo {
                 "Create Stuff 'N Additions",
                 "create_sa",
                 "CF59",
-                "Adds fluid handler capabilities to Jetpacks and tanks",
+                "Adds fluid handler capabilities to gadgets and tanks",
                 io.mcmaster.monkeypatches.Config.PatchConfig.isCreateStuffAdditionsCF59Enabled()));
 
         // Future patches can be logged here

@@ -48,7 +48,7 @@ These fixes have been implemented in upstream repositories but are not yet avail
 - **EndRemasteredCompat Fix**: Fixes NeoForge crashing with End Remastered installed by changing block ticker registration to use predicate-based registration instead of direct block access (applies to version 1.11.0 only)
 
 ### Create Stuff 'N Additions Patches
-- **CF59 Fluid Handler Capabilities**: Adds NeoForge fluid handler capabilities to jetpacks and tanks, enabling compatibility with Create spouts and other fluid-handling systems
+- **CF59 Fluid Handler Capabilities**: Adds NeoForge fluid handler capabilities to gadgets and tanks, enabling compatibility with Create spouts and other fluid-handling systems
 
 ## Installation
 
@@ -76,7 +76,7 @@ The mod includes a configuration file that can be accessed through the mod menu.
 
 - **Create Stuff 'N Additions CF59 Capabilities**: Enable/disable Create Stuff 'N Additions fluid handler capabilities
   - `patches.create_sa.fluid_handler_capabilities_enabled` (default: true)
-  - Controls fluid capability registration for jetpacks and tanks
+  - Controls fluid capability registration for gadgets and tanks
   
 Note: Subtle Effects patches only apply to specific versions (currently 1.11.0) where the issue is present, as they load too early in the process to access configuration.
 

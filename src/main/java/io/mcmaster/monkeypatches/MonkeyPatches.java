@@ -10,9 +10,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -47,10 +45,16 @@ public class MonkeyPatches {
          */
 
         if (ModList.get().isLoaded("create_sa") && Config.PatchConfig.isCreateStuffAdditionsCF59Enabled()) {
+            // CreateSaModItems.ANDESITE_EXOSKELETON_CHESTPLATE
+            FluidCapability.registerCapability(event, CreateSaModItems.ANDESITE_EXOSKELETON_CHESTPLATE.get());
             // CreateSaModItems.ANDESITE_JETPACK_CHESTPLATE
             FluidCapability.registerCapability(event, CreateSaModItems.ANDESITE_JETPACK_CHESTPLATE.get());
+            // CreateSaModItems.COPPER_EXOSKELETON_CHESTPLATE
+            FluidCapability.registerCapability(event, CreateSaModItems.COPPER_EXOSKELETON_CHESTPLATE.get());
             // CreateSaModItems.COPPER_JETPACK_CHESTPLATE
             FluidCapability.registerCapability(event, CreateSaModItems.COPPER_JETPACK_CHESTPLATE.get());
+            // CreateSaModItems.BRASS_EXOSKELETON_CHESTPLATE
+            FluidCapability.registerCapability(event, CreateSaModItems.BRASS_EXOSKELETON_CHESTPLATE.get());
             // CreateSaModItems.BRASS_JETPACK_CHESTPLATE
             FluidCapability.registerCapability(event, CreateSaModItems.BRASS_JETPACK_CHESTPLATE.get());
             // CreateSaModItems.NETHERITE_JETPACK_CHESTPLATE
@@ -67,6 +71,14 @@ public class MonkeyPatches {
             FluidCapability.registerCapability(event, CreateSaModItems.LARGE_FILLING_TANK.get());
             // CreateSaModItems.LARGE_FUELING_TANK
             FluidCapability.registerCapability(event, CreateSaModItems.LARGE_FUELING_TANK.get());
+            // CreateSaModItems.BLOCK_PICKER
+            FluidCapability.registerCapability(event, CreateSaModItems.BLOCK_PICKER.get());
+            // CreateSaModItems.FLAMETHROWER
+            FluidCapability.registerCapability(event, CreateSaModItems.FLAMETHROWER.get());
+            // CreateSaModItems.GRAPPLIN_WHISK
+            FluidCapability.registerCapability(event, CreateSaModItems.GRAPPLIN_WHISK.get());
+            // CreateSaModItems.PORTABLE_DRILL
+            FluidCapability.registerCapability(event, CreateSaModItems.PORTABLE_DRILL.get());
         }
     }
 }

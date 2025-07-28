@@ -1,8 +1,6 @@
 package io.mcmaster.monkeypatches.fixes.createstuffadditions.fluid_capability;
 
-import io.mcmaster.monkeypatches.util.MixinConditions;
-import me.fallenbreath.conditionalmixin.api.annotation.Condition;
-import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
+import net.mcreator.createstuffadditions.configuration.CreateSaConfigConfiguration;
 import net.mcreator.createstuffadditions.init.CreateSaModItems;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.Item;
@@ -15,36 +13,20 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import org.jetbrains.annotations.NotNull;
-import org.spongepowered.asm.mixin.Mixin;
 
 import javax.annotation.Nonnull;
 
 /**
- * Adds IFluidHandlerItem capability to the Andesite Jetpack from Create Stuff &
- * Additions.
+ * Adds IFluidHandlerItem capability to items from Create Stuff 'N Additions.
  * 
- * This mixin enhances the jetpack's fuel system by exposing it through the
- * standard NeoForge
- * fluid capability API, allowing other mods to interact with the jetpack's fuel
- * system.
+ * This enhances the fuel/water system by exposing it through the standard
+ * NeoForge fluid capability API, allowing other mods to interact with the
+ * fuel system.
  * 
- * The jetpack stores fuel as a double value in NBT under the "tagFuel" key.
- * This implementation
- * converts between the NBT fuel system and FluidStack for lava (the jetpack's
- * fuel type).
- * 
- * Implementation details:
- * - Uses lava as the fluid type (jetpack accepts lava buckets)
- * - Converts fuel units to/from mB (1 fuel unit = 250 mB of lava)
- * - Respects the jetpack's capacity limits from CreateSaModVariables
- */
-
-/**
- * Custom fluid handler implementation for the Andesite Jetpack.
- * 
- * This handler bridges between the jetpack's NBT-based fuel system and the
- * standard NeoForge fluid API. It treats the jetpack as a single-tank fluid
- * container that can only hold lava.
+ * Gadgets store fuel in custom data under the `tagFuel` key, and water under
+ * the `tagWater` key. Tanks store their respective fluid under the `tagStock`
+ * key. This implementation converts between the NBT fuel system and FluidStack
+ * with the same conversion rate used when filling by natively supported means.
  */
 
 public class FluidCapability implements IFluidHandlerItem {
@@ -86,14 +68,14 @@ public class FluidCapability implements IFluidHandlerItem {
         if ((tank == 0 && !isWaterValid()) || (tank == 1 && !isFuelValid()))
             return 0;
 
-        if (isJetpack())
-            return 16000;
+        if (isGadget())
+            return (int) (CreateSaConfigConfiguration.GADGETCAPACITY.get() * 10);
         if ((isSmallTank()))
-            return 8000;
+            return (int) (CreateSaConfigConfiguration.SMALLTANKCAPACITY.get() * 10);
         if ((isMediumTank()))
-            return 16000;
+            return (int) (CreateSaConfigConfiguration.MEDIUMTANKCAPACITY.get() * 10);
         if ((isLargeTank()))
-            return 32000;
+            return (int) (CreateSaConfigConfiguration.LARGETANKCAPACITY.get() * 10);
 
         return 0;
     }
@@ -103,11 +85,18 @@ public class FluidCapability implements IFluidHandlerItem {
         return tank == 0 && stack.getFluid() == Fluids.LAVA;
     }
 
-    private boolean isJetpack() {
-        return (container.is(CreateSaModItems.ANDESITE_JETPACK_CHESTPLATE) ||
+    private boolean isGadget() {
+        return (container.is(CreateSaModItems.ANDESITE_EXOSKELETON_CHESTPLATE) ||
+                container.is(CreateSaModItems.ANDESITE_JETPACK_CHESTPLATE) ||
+                container.is(CreateSaModItems.COPPER_EXOSKELETON_CHESTPLATE) ||
                 container.is(CreateSaModItems.COPPER_JETPACK_CHESTPLATE) ||
+                container.is(CreateSaModItems.BRASS_EXOSKELETON_CHESTPLATE) ||
                 container.is(CreateSaModItems.BRASS_JETPACK_CHESTPLATE) ||
-                container.is(CreateSaModItems.NETHERITE_JETPACK_CHESTPLATE));
+                container.is(CreateSaModItems.NETHERITE_JETPACK_CHESTPLATE) ||
+                container.is(CreateSaModItems.BLOCK_PICKER) ||
+                container.is(CreateSaModItems.FLAMETHROWER) ||
+                container.is(CreateSaModItems.GRAPPLIN_WHISK) ||
+                container.is(CreateSaModItems.PORTABLE_DRILL));
     }
 
     private boolean isTank() {
@@ -135,27 +124,34 @@ public class FluidCapability implements IFluidHandlerItem {
     }
 
     private boolean isFuelValid() {
-        return (container.is(CreateSaModItems.ANDESITE_JETPACK_CHESTPLATE) ||
+        return (container.is(CreateSaModItems.ANDESITE_EXOSKELETON_CHESTPLATE) ||
+                container.is(CreateSaModItems.ANDESITE_JETPACK_CHESTPLATE) ||
+                container.is(CreateSaModItems.BRASS_EXOSKELETON_CHESTPLATE) ||
                 container.is(CreateSaModItems.BRASS_JETPACK_CHESTPLATE) ||
                 container.is(CreateSaModItems.NETHERITE_JETPACK_CHESTPLATE) ||
                 container.is(CreateSaModItems.SMALL_FUELING_TANK) ||
                 container.is(CreateSaModItems.MEDIUM_FUELING_TANK) ||
-                container.is(CreateSaModItems.LARGE_FUELING_TANK));
+                container.is(CreateSaModItems.LARGE_FUELING_TANK) ||
+                container.is(CreateSaModItems.FLAMETHROWER) ||
+                container.is(CreateSaModItems.GRAPPLIN_WHISK) ||
+                container.is(CreateSaModItems.PORTABLE_DRILL));
     }
 
     private boolean isWaterValid() {
-        return (container.is(CreateSaModItems.COPPER_JETPACK_CHESTPLATE) ||
+        return (container.is(CreateSaModItems.COPPER_EXOSKELETON_CHESTPLATE) ||
+                container.is(CreateSaModItems.COPPER_JETPACK_CHESTPLATE) ||
+                container.is(CreateSaModItems.BRASS_EXOSKELETON_CHESTPLATE) ||
                 container.is(CreateSaModItems.BRASS_JETPACK_CHESTPLATE) ||
                 container.is(CreateSaModItems.NETHERITE_JETPACK_CHESTPLATE) ||
                 container.is(CreateSaModItems.SMALL_FILLING_TANK) ||
                 container.is(CreateSaModItems.MEDIUM_FILLING_TANK) ||
-                container.is(CreateSaModItems.LARGE_FILLING_TANK));
+                container.is(CreateSaModItems.LARGE_FILLING_TANK) ||
+                container.is(CreateSaModItems.BLOCK_PICKER) ||
+                container.is(CreateSaModItems.PORTABLE_DRILL));
     }
 
     @Override
     public int fill(@Nonnull FluidStack resource, @Nonnull IFluidHandler.FluidAction action) {
-        // if (resource.isEmpty() || (resource.getFluid() != Fluids.LAVA &&
-        // resource.getFluid() != Fluids.WATER)) {
         if (resource.isEmpty())
             return 0;
 
@@ -242,13 +238,13 @@ public class FluidCapability implements IFluidHandlerItem {
 
         if (tank < 0 || tank >= 2)
             return 0.0;
-        if (!isJetpack() && !isTank())
+        if (!isGadget() && !isTank())
             return 0.0;
 
         if (tank == 0 && isWaterValid()) {
-            tagName = isJetpack() ? "tagWater" : "tagStock";
+            tagName = isGadget() ? "tagWater" : "tagStock";
         } else if (tank == 1 && isFuelValid()) {
-            tagName = isJetpack() ? "tagFuel" : "tagStock";
+            tagName = isGadget() ? "tagFuel" : "tagStock";
         } else {
             return 0.0;
         }
@@ -266,13 +262,13 @@ public class FluidCapability implements IFluidHandlerItem {
 
         if (tank < 0 || tank >= 2)
             return;
-        if (!isJetpack() && !isTank())
+        if (!isGadget() && !isTank())
             return;
 
         if (tank == 0 && isWaterValid()) {
-            tagName = isJetpack() ? "tagWater" : "tagStock";
+            tagName = isGadget() ? "tagWater" : "tagStock";
         } else if (tank == 1 && isFuelValid()) {
-            tagName = isJetpack() ? "tagFuel" : "tagStock";
+            tagName = isGadget() ? "tagFuel" : "tagStock";
         } else {
             return;
         }
@@ -291,42 +287,3 @@ public class FluidCapability implements IFluidHandlerItem {
         }
     }
 }
-
-/**
- * Registers the fluid capability for the Andesite Jetpack.
- * This method should be called during capability registration.
- */
-// public static void registerCapability(RegisterCapabilitiesEvent event) {
-// // Check if the patch is enabled, if not, skip registration
-// if (!MixinConditions.shouldApplyCSAAndesiteJetpackFluidCapability()) {
-// return;
-// }
-
-// // Register the fluid handler capability for the andesite jetpack chestplate
-// try {
-// // Get the item from Create Stuff & Additions
-// Class<?> jetpackItemClass =
-// Class.forName("net.mcreator.createstuffadditions.init.CreateSaModItems");
-// Object andesiteJetpackChestplate =
-// jetpackItemClass.getField("ANDESITE_JETPACK_CHESTPLATE").get(null);
-
-// if (andesiteJetpackChestplate instanceof
-// net.neoforged.neoforge.registries.DeferredHolder) {
-// @SuppressWarnings("rawtypes")
-// net.neoforged.neoforge.registries.DeferredHolder holder =
-// (net.neoforged.neoforge.registries.DeferredHolder) andesiteJetpackChestplate;
-
-// Object item = holder.get();
-// if (item instanceof net.minecraft.world.item.Item) {
-// event.registerItem(
-// Capabilities.FluidHandler.ITEM,
-// (stack, context) -> new JetpackFluidHandler(stack),
-// (net.minecraft.world.item.Item) item);
-// }
-// }
-// } catch (Exception e) {
-// // Log the error but don't crash - this is a compatibility feature
-// System.err.println("Failed to register Andesite Jetpack fluid capability: " +
-// e.getMessage());
-// }
-// }
