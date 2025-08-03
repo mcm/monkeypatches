@@ -50,6 +50,9 @@ These fixes have been implemented in upstream repositories but are not yet avail
 ### Create Stuff 'N Additions Patches
 - **CF59 Fluid Handler Capabilities**: Adds NeoForge fluid handler capabilities to gadgets and tanks, enabling compatibility with Create spouts and other fluid-handling systems
 
+### Rhino Patches
+- **PR57 Object Signature Parsing**: Fixes the `sizeOfParameters` method in ClassFileWriter to properly parse object signatures in arrays, preventing parsing failures when object types appear within array signatures like `[Ljava/lang/String;`
+
 ## Installation
 
 1. Download the latest version from Curseforge
@@ -78,7 +81,7 @@ The mod includes a configuration file that can be accessed through the mod menu.
   - `patches.create_sa.fluid_handler_capabilities_enabled` (default: true)
   - Controls fluid capability registration for gadgets and tanks
   
-Note: Subtle Effects patches only apply to specific versions (currently 1.11.0) where the issue is present, as they load too early in the process to access configuration.
+Note: Subtle Effects and Rhino patches only apply to specific versions or load too early in the process to access configuration, so they cannot be disabled through config files.
 
 ### General Settings
 - **Debug logging settings**: Various logging options for development

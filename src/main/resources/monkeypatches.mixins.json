@@ -6,7 +6,8 @@
     "kubejs.GH972.KubeJSModEventHandlerMixin",
     "kubejs.GH972.ServerScriptManagerMixin",
     "subtle_effects.GH113.EndRemasteredCompatMixin",
-    "portabletanks.GH12.PortableTankItemMixin"
+    "portabletanks.GH12.PortableTankItemMixin",
+    "rhino.PR57.ClassFileWriterMixin"
   ],
   "injectors": {
     "defaultRequire": 1

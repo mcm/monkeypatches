@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.2] - 2025-08-03
+
+### Added
+- Rhino PR57 patch for object signature parsing in arrays
+  - ClassFileWriterMixin: Fixes the `sizeOfParameters` method to properly parse object signatures in bytecode
+  - Prevents parsing failures when object types appear within array signatures (e.g., `[Ljava/lang/String;`)
+  - Overwrites the entire method with the fixed implementation from upstream PR
+  - Only loads when Rhino mod is present (no configuration option due to early loading)
+
+### Technical Details
+- Fixes the 'L' case handling in signature parsing that was falling through to default
+- Adds proper semicolon detection and bounds checking for object type signatures
+- Uses @Overwrite mixin to replace the buggy method entirely
+
 ## [0.4.1] - 2025-07-28
 - Create Stuff 'N Additions CF59 patch for fluid handler capabilities
   - Extended fluid handler patches to all gadgets
