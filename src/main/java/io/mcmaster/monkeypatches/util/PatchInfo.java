@@ -80,6 +80,14 @@ public class PatchInfo {
                 "Adds fluid handler capabilities to gadgets and tanks",
                 io.mcmaster.monkeypatches.Config.PatchConfig.isCreateStuffAdditionsCF59Enabled()));
 
+        // PortableTanks patches
+        logPatchGroup(new PatchGroup(
+                "Just Enough Resources",
+                "jeresources",
+                "GH547",
+                "Prevents missing JER tabs when using modded biomes",
+                io.mcmaster.monkeypatches.Config.PatchConfig.isJustEnoughResourcesGH547Enabled()));
+
         // Future patches can be logged here
 
         MonkeyPatches.LOGGER.info("=== End Patch Status ===");

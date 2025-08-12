@@ -7,6 +7,8 @@
   "monkeypatches.configuration.gh12_enabled": "Fixes for Github #12",
   "monkeypatches.configuration.create_sa": "Create Stuff 'N Additions Patches",
   "monkeypatches.configuration.fluid_handler_capabilities_enabled": "Fluid Handler Capabilities (CF #59)",
+  "monkeypatches.configuration.jeresources": "JustEnoughResources Patches",
+  "monkeypatches.configuration.gh547_enabled": "Biome Helper Fix (GH #547)",
   "monkeypatches.configuration.section.monkeypatches.common.toml": "Monkey Patches",
   "monkeypatches.configuration.section.monkeypatches.common.toml.title": "Monkey Patches"
 }

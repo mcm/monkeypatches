@@ -3,6 +3,7 @@
   "package": "io.mcmaster.monkeypatches.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "jeresources.GH547.BiomeHelperMixin",
     "kubejs.GH972.KubeJSModEventHandlerMixin",
     "kubejs.GH972.ServerScriptManagerMixin",
     "subtle_effects.GH113.EndRemasteredCompatMixin",

@@ -67,6 +67,17 @@ public class MixinConditions {
         return ModList.get().isLoaded("portabletanks") && Config.PatchConfig.isPortableTanksGH12Enabled();
     }
 
+    /**
+     * Returns whether JustEnoughResources GH547 patches should be applied.
+     * Used in @Inject mixins to conditionally apply new logic.
+     * 
+     * Checks both mod loading and configuration.
+     */
+    public static boolean shouldApplyJustEnoughResourcesGH547() {
+        return ModList.get().isLoaded("jeresources") &&
+                Config.PatchConfig.isJustEnoughResourcesGH547Enabled();
+    }
+
     // Future condition methods can be added here
     // Example:
     // public static boolean shouldApplySomeOtherModIssue() {

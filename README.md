@@ -37,6 +37,9 @@ For players, this results in more stable modpacks, fewer crashes, and fewer game
 
 These fixes have been implemented in upstream repositories but are not yet available in stable or public builds. Monkey Patches provides a clean way to apply them in your modpack today.
 
+### Just Enough Resources (JER) Patches
+- **GH547 Biome Helper Fix**: Fixes JER compatibility with Vanilla Backport and other mods that add custom biomes to NeoForge 1.21+. Prevents missing villager trades tab, JER crashes, and empty biome lists by updating BiomeHelper registry access methods. ([docs/patches/jeresources_gh547_biome_helper_fix.md](docs/patches/jeresources_gh547_biome_helper_fix.md))
+
 ### KubeJS Patches
 - **ServerScriptManager Fix**: Fixes assumptions about concrete builder types that could cause ClassCastException
 - **KubeJSModEventHandler Fix**: Fixes assumptions about BlockEntityBuilder instances in capability registration
@@ -76,6 +79,10 @@ The mod includes a configuration file that can be accessed through the mod menu.
 - **PortableTanks GH12 Patches**: Enable/disable the PortableTanks issue #12 patches
   - `patches.portabletanks.gh12_enabled` (default: true)
   - Controls PortableTankItemMixin null compound handling
+
+- **JustEnoughResources GH547 Patches**: Enable/disable the JustEnoughResources issue #547 patches
+  - `patches.jeresources.gh547_enabled` (default: true)
+  - Controls BiomeHelperMixin for Vanilla Backport compatibility
 
 - **Create Stuff 'N Additions CF59 Capabilities**: Enable/disable Create Stuff 'N Additions fluid handler capabilities
   - `patches.create_sa.fluid_handler_capabilities_enabled` (default: true)

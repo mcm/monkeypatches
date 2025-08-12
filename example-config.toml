@@ -44,3 +44,12 @@
 		# Allows jetpacks and tanks to be filled using Create spouts and other fluid systems
 		# Status in logs: ENABLED / DISABLED / MOD NOT LOADED
 		fluid_handler_capabilities_enabled = true
+
+	# Just Enough Resources Patches
+	# Patches for the Just Enough Resources mod
+	# These patches will only load if Just Enough Resources is installed
+	[patches.jeresources]
+		# Enable Just Enough Resources issue #547 patch
+		# Prevents missing JER tabs when using modded biomes
+		# Status in logs: ENABLED / DISABLED / MOD NOT LOADED
+		fluid_handler_capabilities_enabled = true

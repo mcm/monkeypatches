@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.3] - 2025-08-11
+
+### Added
+- JustEnoughResources GH547 patch for biome helper compatibility
+  - BiomeHelperMixin: Fixes biome lookup and listing in JER for NeoForge 1.21+ by updating registry access
+  - Prevents crashes and missing JER tabs when using mods with custom biomes like Vanilla Backport
+  - Updates three critical methods: getAllBiomes(), getBiome(), and getBiomes() to use modern registry access
+  - Only loads when JustEnoughResources mod is present (no version restrictions needed)
+
+### Technical Details
+- Replaces legacy biome registry access with `level.registryAccess().registry(Registries.BIOME)`
+- Includes comprehensive null safety checks for level and registry availability
+- Uses @Inject mixins to replace method implementations while preserving original behavior when disabled
+- Configuration option: `patches.jeresources.gh547_enabled` (default: true)
+
 ## [0.4.2] - 2025-08-03
 
 ### Added

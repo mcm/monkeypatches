@@ -66,6 +66,22 @@ public class Config {
                 BUILDER.pop(); // create_sa
         }
 
+        // JustEnoughResources patches
+        static {
+                BUILDER.comment("Just Enough Resources Patches")
+                                .comment("Patches for the Just Enough Resources mod")
+                                .push("jeresources");
+        }
+
+        public static final ModConfigSpec.BooleanValue JER_GH547_ENABLED = BUILDER
+                        .comment("Enable Just Enough Resources issue #547 patch")
+                        .comment("Prevents missing JER tabs when using modded biomes")
+                        .define("gh547_enabled", true);
+
+        static {
+                BUILDER.pop(); // jeresources
+        }
+
         // Future mod patches can be added here
         // Example:
         // static {
@@ -113,6 +129,13 @@ public class Config {
                  */
                 public static boolean isCreateStuffAdditionsCF59Enabled() {
                         return CREATESA_CF59_ENABLED.get();
+                }
+
+                /**
+                 * Check if JustEnoughResources issue #547 patches are enabled
+                 */
+                public static boolean isJustEnoughResourcesGH547Enabled() {
+                        return JER_GH547_ENABLED.get();
                 }
 
                 // Future patch check methods can be added here
