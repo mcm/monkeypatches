@@ -80,13 +80,21 @@ public class PatchInfo {
                 "Adds fluid handler capabilities to gadgets and tanks",
                 io.mcmaster.monkeypatches.Config.PatchConfig.isCreateStuffAdditionsCF59Enabled()));
 
-        // PortableTanks patches
+        // JustEnoughResources patches
         logPatchGroup(new PatchGroup(
                 "Just Enough Resources",
                 "jeresources",
                 "GH547",
                 "Prevents missing JER tabs when using modded biomes",
                 io.mcmaster.monkeypatches.Config.PatchConfig.isJustEnoughResourcesGH547Enabled()));
+
+        // Patchouli patches
+        logPatchGroup(new PatchGroup(
+                "Patchouli",
+                "patchouli",
+                "GH790",
+                "Fixes registry access issues during book loading",
+                io.mcmaster.monkeypatches.Config.PatchConfig.isPatchouliGH790Enabled()));
 
         // Future patches can be logged here
 

@@ -1,8 +1,5 @@
 package io.mcmaster.monkeypatches.util;
 
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
 import io.mcmaster.monkeypatches.Config;
 import net.neoforged.fml.ModList;
 
@@ -16,27 +13,6 @@ import net.neoforged.fml.ModList;
  * but these methods provide runtime checks for additional safety.
  */
 public class MixinConditions {
-
-    /**
-     * Cancels a mixin callback if KubeJS GH972 patches are disabled.
-     * Used in @Inject callbacks with cancellable=true.
-     */
-    public static void cancelIfKubeJSGH972Disabled(CallbackInfo ci) {
-        if (!shouldApplyKubeJSGH972()) {
-            ci.cancel();
-        }
-    }
-
-    /**
-     * Cancels a mixin callback if KubeJS GH972 patches are disabled.
-     * Used in @Inject callbacks with cancellable=true that return a value.
-     */
-    public static <T> void cancelIfKubeJSGH972Disabled(CallbackInfoReturnable<T> cir) {
-        if (!shouldApplyKubeJSGH972()) {
-            cir.cancel();
-        }
-    }
-
     /**
      * Returns whether KubeJS GH972 patches should be applied.
      * Used in @Redirect mixins to conditionally apply redirects.
@@ -76,6 +52,17 @@ public class MixinConditions {
     public static boolean shouldApplyJustEnoughResourcesGH547() {
         return ModList.get().isLoaded("jeresources") &&
                 Config.PatchConfig.isJustEnoughResourcesGH547Enabled();
+    }
+
+    /**
+     * Returns whether Patchouli GH790 patches should be applied.
+     * Used in @Redirect mixins to conditionally apply redirects.
+     * 
+     * Checks both mod loading and configuration.
+     */
+    public static boolean shouldApplyPatchouliGH790() {
+        return ModList.get().isLoaded("patchouli") &&
+                Config.PatchConfig.isPatchouliGH790Enabled();
     }
 
     // Future condition methods can be added here

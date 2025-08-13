@@ -47,6 +47,9 @@ These fixes have been implemented in upstream repositories but are not yet avail
 ### PortableTanks Patches
 - **GH12 Null Compound Fix**: Fixes NullPointerException when accessing fluid data from ItemStacks without proper NBT data
 
+### Patchouli Patches
+- **GH790 Registry Access Fix**: Fixes issues during book loading when custom book items are parsed before their mod has registered items. Uses level registry access when available, preventing spurious errors in the logs with mods like Ars Nouveau. ([docs/patches/patchouli_gh790_registry_access_fix.md](docs/patches/patchouli_gh790_registry_access_fix.md))
+
 ### Subtle Effects Patches
 - **EndRemasteredCompat Fix**: Fixes NeoForge crashing with End Remastered installed by changing block ticker registration to use predicate-based registration instead of direct block access (applies to version 1.11.0 only)
 
@@ -83,6 +86,10 @@ The mod includes a configuration file that can be accessed through the mod menu.
 - **JustEnoughResources GH547 Patches**: Enable/disable the JustEnoughResources issue #547 patches
   - `patches.jeresources.gh547_enabled` (default: true)
   - Controls BiomeHelperMixin for Vanilla Backport compatibility
+
+- **Patchouli GH790 Patches**: Enable/disable the Patchouli issue #790 patches
+  - `patches.patchouli.gh790_enabled` (default: true)
+  - Controls BookMixin for registry access fix during book loading
 
 - **Create Stuff 'N Additions CF59 Capabilities**: Enable/disable Create Stuff 'N Additions fluid handler capabilities
   - `patches.create_sa.fluid_handler_capabilities_enabled` (default: true)

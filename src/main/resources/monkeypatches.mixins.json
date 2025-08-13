@@ -6,9 +6,10 @@
     "jeresources.GH547.BiomeHelperMixin",
     "kubejs.GH972.KubeJSModEventHandlerMixin",
     "kubejs.GH972.ServerScriptManagerMixin",
-    "subtle_effects.GH113.EndRemasteredCompatMixin",
+    "patchouli.GH790.BookMixin",
     "portabletanks.GH12.PortableTankItemMixin",
-    "rhino.PR57.ClassFileWriterMixin"
+    "rhino.PR57.ClassFileWriterMixin",
+    "subtle_effects.GH113.EndRemasteredCompatMixin"
   ],
   "injectors": {
     "defaultRequire": 1

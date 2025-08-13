@@ -82,6 +82,22 @@ public class Config {
                 BUILDER.pop(); // jeresources
         }
 
+        // JustEnoughResources patches
+        static {
+                BUILDER.comment("Patchouli Patches")
+                                .comment("Patches for the Patchouli mod")
+                                .push("patchouli");
+        }
+
+        public static final ModConfigSpec.BooleanValue PATCHOULI_GH790_ENABLED = BUILDER
+                        .comment("Enable Patchouli issue #790 patch")
+                        .comment("Prevents registry access issues")
+                        .define("gh790_enabled", true);
+
+        static {
+                BUILDER.pop(); // patchouli
+        }
+
         // Future mod patches can be added here
         // Example:
         // static {
@@ -136,6 +152,13 @@ public class Config {
                  */
                 public static boolean isJustEnoughResourcesGH547Enabled() {
                         return JER_GH547_ENABLED.get();
+                }
+
+                /**
+                 * Check if JustEnoughResources issue #547 patches are enabled
+                 */
+                public static boolean isPatchouliGH790Enabled() {
+                        return PATCHOULI_GH790_ENABLED.get();
                 }
 
                 // Future patch check methods can be added here

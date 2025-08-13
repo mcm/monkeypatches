@@ -9,6 +9,8 @@
   "monkeypatches.configuration.fluid_handler_capabilities_enabled": "Fluid Handler Capabilities (CF #59)",
   "monkeypatches.configuration.jeresources": "JustEnoughResources Patches",
   "monkeypatches.configuration.gh547_enabled": "Biome Helper Fix (GH #547)",
+  "monkeypatches.configuration.patchouli": "Patchouli Patches",
+  "monkeypatches.configuration.gh790_enabled": "Registry Access Fix (GH #790)",
   "monkeypatches.configuration.section.monkeypatches.common.toml": "Monkey Patches",
   "monkeypatches.configuration.section.monkeypatches.common.toml.title": "Monkey Patches"
 }

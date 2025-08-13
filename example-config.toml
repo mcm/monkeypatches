@@ -52,4 +52,14 @@
 		# Enable Just Enough Resources issue #547 patch
 		# Prevents missing JER tabs when using modded biomes
 		# Status in logs: ENABLED / DISABLED / MOD NOT LOADED
-		fluid_handler_capabilities_enabled = true
+		gh547_enabled = true
+
+	# Patchouli Patches
+	# Patches for the Patchouli mod
+	# These patches will only load if Patchouli is installed
+	[patches.patchouli]
+		# Enable Patchouli issue #790 patch
+		# Prevents registry access issues during book loading
+		# Fixes CommandSyntaxException when loading custom book items before mod registration
+		# Status in logs: ENABLED / DISABLED / MOD NOT LOADED
+		gh790_enabled = true
