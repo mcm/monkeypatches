@@ -135,18 +135,14 @@ dependencies {
     // And its provides the option to then use net.minecraft as the group, and one of; client, server or joined as the module name, plus the game version as version.
     // For all intends and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
-    
-    // KubeJS dependency for the mixin targets
-    implementation "dev.latvian.mods:kubejs-neoforge:${kubejs_version}"
 
     // Conditional Mixin library for mod-dependent mixins
     implementation "me.fallenbreath:conditional-mixin-neoforge:0.6.4"
     runtimeOnly "me.fallenbreath:conditional-mixin-neoforge:0.6.4"
-    
-    // Bundle conditional-mixin into the mod jar
     jarJar "me.fallenbreath:conditional-mixin-neoforge:0.6.4"
 
-    implementation "curse.maven:create-stuff-additions-466792:6448012"
+    compileOnly "dev.latvian.mods:kubejs-neoforge:${kubejs_version}"
+    compileOnly "curse.maven:create-stuff-additions-466792:6448012"
 
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

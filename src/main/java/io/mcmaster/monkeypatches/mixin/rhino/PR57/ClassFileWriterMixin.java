@@ -24,7 +24,7 @@ import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
  * the parser correctly finds the terminating semicolon and validates the
  * signature structure.
  */
-@Restriction(require = @Condition("rhino"))
+@Restriction(require = @Condition(value = "rhino", versionPredicates = "<2101.2.7-build.77"))
 @Mixin(value = ClassFileWriter.class, remap = false)
 public class ClassFileWriterMixin {
 

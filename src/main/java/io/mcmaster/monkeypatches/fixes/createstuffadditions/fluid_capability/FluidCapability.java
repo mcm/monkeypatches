@@ -286,4 +286,41 @@ public class FluidCapability implements IFluidHandlerItem {
                     item);
         }
     }
+
+    public static void registerAll(RegisterCapabilitiesEvent event) {
+        // CreateSaModItems.ANDESITE_EXOSKELETON_CHESTPLATE
+        registerCapability(event, CreateSaModItems.ANDESITE_EXOSKELETON_CHESTPLATE.get());
+        // CreateSaModItems.ANDESITE_JETPACK_CHESTPLATE
+        registerCapability(event, CreateSaModItems.ANDESITE_JETPACK_CHESTPLATE.get());
+        // CreateSaModItems.COPPER_EXOSKELETON_CHESTPLATE
+        registerCapability(event, CreateSaModItems.COPPER_EXOSKELETON_CHESTPLATE.get());
+        // CreateSaModItems.COPPER_JETPACK_CHESTPLATE
+        registerCapability(event, CreateSaModItems.COPPER_JETPACK_CHESTPLATE.get());
+        // CreateSaModItems.BRASS_EXOSKELETON_CHESTPLATE
+        registerCapability(event, CreateSaModItems.BRASS_EXOSKELETON_CHESTPLATE.get());
+        // CreateSaModItems.BRASS_JETPACK_CHESTPLATE
+        registerCapability(event, CreateSaModItems.BRASS_JETPACK_CHESTPLATE.get());
+        // CreateSaModItems.NETHERITE_JETPACK_CHESTPLATE
+        registerCapability(event, CreateSaModItems.NETHERITE_JETPACK_CHESTPLATE.get());
+        // CreateSaModItems.SMALL_FILLING_TANK
+        registerCapability(event, CreateSaModItems.SMALL_FILLING_TANK.get());
+        // CreateSaModItems.SMALL_FUELING_TANK
+        registerCapability(event, CreateSaModItems.SMALL_FUELING_TANK.get());
+        // CreateSaModItems.MEDIUM_FILLING_TANK
+        registerCapability(event, CreateSaModItems.MEDIUM_FILLING_TANK.get());
+        // CreateSaModItems.MEDIUM_FUELING_TANK
+        registerCapability(event, CreateSaModItems.MEDIUM_FUELING_TANK.get());
+        // CreateSaModItems.LARGE_FILLING_TANK
+        registerCapability(event, CreateSaModItems.LARGE_FILLING_TANK.get());
+        // CreateSaModItems.LARGE_FUELING_TANK
+        registerCapability(event, CreateSaModItems.LARGE_FUELING_TANK.get());
+        // CreateSaModItems.BLOCK_PICKER
+        registerCapability(event, CreateSaModItems.BLOCK_PICKER.get());
+        // CreateSaModItems.FLAMETHROWER
+        registerCapability(event, CreateSaModItems.FLAMETHROWER.get());
+        // CreateSaModItems.GRAPPLIN_WHISK
+        registerCapability(event, CreateSaModItems.GRAPPLIN_WHISK.get());
+        // CreateSaModItems.PORTABLE_DRILL
+        registerCapability(event, CreateSaModItems.PORTABLE_DRILL.get());
+    }
 }

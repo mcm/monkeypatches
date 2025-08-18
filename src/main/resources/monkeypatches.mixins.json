@@ -3,13 +3,15 @@
   "package": "io.mcmaster.monkeypatches.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "jeresources.GH547.BiomeHelperMixin",
     "kubejs.GH972.KubeJSModEventHandlerMixin",
     "kubejs.GH972.ServerScriptManagerMixin",
-    "patchouli.GH790.BookMixin",
     "portabletanks.GH12.PortableTankItemMixin",
     "rhino.PR57.ClassFileWriterMixin",
     "subtle_effects.GH113.EndRemasteredCompatMixin"
+  ],
+  "client": [
+    "jeresources.GH547.BiomeHelperMixin",
+    "patchouli.GH790.BookMixin"
   ],
   "injectors": {
     "defaultRequire": 1

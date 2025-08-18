@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.5] - 2025-08-17
+
+### Fixed
+- Patchouli GH790 and JustEnoughResources GH547 now load only on client
+- Rhino PR57 does not load on fixed versions (>= 2101.2.7-build.77)
+- Cleaned up Create S&A capability fix and dependencies
+
+## [0.4.4] - 2025-08-12
+
+### Added
+- Patchouli GH790 patch for registry access during book loading
+  - BookMixin: Fixes registry access issues when custom book items are parsed before mod registration
+  - Redirects VanillaRegistries.createLookup() to use current level's registry access when available
+  - Prevents spurious error messages and potential issues during mod loading
+  - Only loads when Patchouli mod is present
+
+### Technical Details
+- Uses @Redirect mixin to intercept registry lookup calls in Book constructor
+- Falls back to vanilla registry lookup when level is not available (early startup)
+- Ensures all loaded mods' items are accessible during book parsing
+- Configuration option: `patches.patchouli.gh790_enabled` (default: true)
+
 ## [0.4.3] - 2025-08-11
 
 ### Added
