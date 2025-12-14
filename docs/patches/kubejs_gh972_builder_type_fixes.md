@@ -53,6 +53,7 @@ This fix is implemented through two separate mixin classes that address the same
 - Filters the collection using `stream().filter(ItemBuilder.class::isInstance)`
 - **Mixin Target**: `ServerScriptManager.loadAdditional()` method  
 - **Injection Point**: `RegistryObjectStorage.iterator()` call
+- **Version Targeting**: Only applies to KubeJS versions `<2101.7.2` (fix included in 2101.7.2+)
 
 ### KubeJSModEventHandlerMixin
 
@@ -65,12 +66,15 @@ This fix is implemented through two separate mixin classes that address the same
 - **Mixin Target**: `KubeJSModEventHandler.registerCapabilities()` method  
 - **Injection Point**: `Collection.stream()` call
 - Static method targeting for proper capability registration
+- **Version Targeting**: Only applies to KubeJS versions `<2101.7.2` (fix included in 2101.7.2+)
 
 ### Common Features
 
 Both mixins share these characteristics:
 - Configurable via `patches.kubejs.gh972_enabled` setting
 - Only load when KubeJS mod is present (conditional loading)
+- Only apply to KubeJS versions before 2101.7.2 (version predicate)
+- Disabled when kubejstweaks mod is present (conflict detection)
 - Check configuration setting before applying fixes
 - Graceful fallback to original behavior when disabled
 

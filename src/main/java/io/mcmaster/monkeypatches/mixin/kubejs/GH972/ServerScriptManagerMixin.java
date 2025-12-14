@@ -27,8 +27,11 @@ import java.util.Iterator;
  * 
  * This mixin is disabled when kubejstweaks is installed, as it provides its own
  * fixes for this issue.
+ * 
+ * Note: This patch only applies to KubeJS version 2101.7.1 and earlier,
+ * as the fix was merged and included in version 2101.7.2 and later.
  */
-@Restriction(require = @Condition("kubejs"), conflict = @Condition("kubejstweaks"))
+@Restriction(require = @Condition(value = "kubejs", versionPredicates = "[,2101.7.2)"), conflict = @Condition("kubejstweaks"))
 @Mixin(value = ServerScriptManager.class, remap = false)
 public class ServerScriptManagerMixin {
 

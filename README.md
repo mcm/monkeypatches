@@ -37,6 +37,9 @@ For players, this results in more stable modpacks, fewer crashes, and fewer game
 
 These fixes have been implemented in upstream repositories but are not yet available in stable or public builds. Monkey Patches provides a clean way to apply them in your modpack today.
 
+### Copper Age Backport Patches
+- **GH48 Copper Armor Durability**: Fixes copper armor having infinite durability by adding explicit durability values during item registration. Prevents copper armor pieces from lasting forever when damaged. Only applies to versions ≤0.1.4 as the fix is included in 0.1.5+. ([docs/patches/copperagebackport_gh48_armor_durability.md](docs/patches/copperagebackport_gh48_armor_durability.md))
+
 ### Just Enough Resources (JER) Patches
 - **GH547 Biome Helper Fix**: Fixes JER compatibility with Vanilla Backport and other mods that add custom biomes to NeoForge 1.21+. Prevents missing villager trades tab, JER crashes, and empty biome lists by updating BiomeHelper registry access methods. ([docs/patches/jeresources_gh547_biome_helper_fix.md](docs/patches/jeresources_gh547_biome_helper_fix.md))
 
@@ -95,7 +98,7 @@ The mod includes a configuration file that can be accessed through the mod menu.
   - `patches.create_sa.fluid_handler_capabilities_enabled` (default: true)
   - Controls fluid capability registration for gadgets and tanks
   
-Note: Subtle Effects and Rhino patches only apply to specific versions or load too early in the process to access configuration, so they cannot be disabled through config files.
+Note: Copper Age Backport, Subtle Effects, and Rhino patches only apply to specific versions or load too early in the process to access configuration, so they cannot be disabled through config files.
 
 ### General Settings
 - **Debug logging settings**: Various logging options for development

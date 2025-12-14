@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2025-12-14
+
+### Added
+- Copper Age Backport GH48 patch for copper armor durability
+  - ModItemsMixin: Fixes copper armor having infinite durability by adding explicit durability values
+  - Adds durability to helmet, chestplate, leggings, and boots using durability multiplier of 11
+  - Only loads for Copper Age Backport versions <=0.1.4 (fix should be in the next release)
+  - No configuration option available - patch runs during early class loading before config system initializes
+
+### Fixed
+- KubeJS GH972 patches now include version predicates to prevent loading on fixed versions
+  - ServerScriptManagerMixin and KubeJSModEventHandlerMixin now only apply to KubeJS versions <2101.7.2
+  - Resolves crash when using KubeJS 2101.7.2+ which includes the native fix
+  - Fixes "Critical injection failure" error when mixins attempt to apply to already-fixed code
+  - See issue #3 for details
+
+### Technical Details
+- Uses @Redirect to intercept stacksTo() calls in specific lambda methods during armor registration
+- Targets lambda$register$74 (helmet), lambda$register$75 (chestplate), lambda$register$76 (leggings), lambda$register$77 (boots)
+- Chains durability() call onto properties builder: `props.stacksTo(n).durability(type.getDurability(11))`
+- Version predicate `[,0.1.4]` ensures patch doesn't conflict with upstream fix in newer releases
+- KubeJS GH972 mixins now use `versionPredicates = "[,2101.7.2)"` to prevent application on fixed versions
+
 ## [0.4.5] - 2025-08-17
 
 ### Fixed

@@ -36,7 +36,7 @@ When reporting issues, please include:
 
 3. **Mixin Best Practices**:
    - Use `@Restriction(require = @Condition("modid"))` for conditional loading
-   - Add version predicates when applicable: `@Condition(value = "modid", versionPredicates = ">=1.0.1 <1.2")`
+   - Add version predicates when applicable: `@Condition(value = "modid", versionPredicates = "[1.0.1,1.2)")`
    - Include detailed JavaDoc comments explaining the patch
    - Use configuration checks where appropriate
    - Prefer minimal, targeted changes over broad modifications
@@ -56,7 +56,7 @@ When reporting issues, please include:
 
 2. **Add conditional loading annotations**:
    - Use `@Restriction(require = @Condition("modid"))` to only load when the target mod is present
-   - Optionally add version predicates: `@Condition(value = "modid", versionPredicates = ">=1.0.1 <1.2")`
+   - Optionally add version predicates: `@Condition(value = "modid", versionPredicates = "[1.0.1,1.2)")`
 
 3. **Implement runtime configuration checks** (optional):
    - Add configuration option in `Config.java` under the appropriate mod section
@@ -97,7 +97,7 @@ io.mcmaster.monkeypatches.mixin.kubejs.GH972.KubeJSModEventHandlerMixin
 io.mcmaster.monkeypatches.mixin.subtle_effects.GH113.EndRemasteredCompatMixin
 ```
 
-Each mixin class uses the `@Restriction(require = @Condition("modid"))` annotation to ensure conditional loading. When possible, version predicates should be added as well, such as `@Restriction(require = @Condition(value = "modid", versionPredicates = ">=1.0.1 <1.2"))`.
+Each mixin class uses the `@Restriction(require = @Condition("modid"))` annotation to ensure conditional loading. When possible, version predicates should be added as well, such as `@Restriction(require = @Condition(value = "modid", versionPredicates = "[1.0.1,1.2)"))`.
 
 ### Development Setup
 
