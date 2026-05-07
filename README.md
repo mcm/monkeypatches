@@ -59,6 +59,9 @@ These fixes have been implemented in upstream repositories but are not yet avail
 ### Create Stuff 'N Additions Patches
 - **CF59 Fluid Handler Capabilities**: Adds NeoForge fluid handler capabilities to gadgets and tanks, enabling compatibility with Create spouts and other fluid-handling systems
 
+### Farmers Delight Patches
+- **Tag Load Order Fix**: Fixes an occasional `NullPointerException` in Farmers Delight 1.3.1 caused by a class-init race in `ModTags`. The deprecated top-level tag references (e.g. `ModTags.MUSHROOM_COLONY_GROWABLE_ON`) can capture `null` when the inner-class init re-enters the outer class, leading to crashes such as FungiDelight #8 at random tick time. Repairs any null deprecated outer field at the end of `ModTags.<clinit>`. Only applies to FD 1.3.1 (1.3.0 lacks the deprecated outer fields and 1.3.2+ contains the upstream fix). ([docs/patches/farmersdelight_tag_load_order.md](docs/patches/farmersdelight_tag_load_order.md))
+
 ### Rhino Patches
 - **PR57 Object Signature Parsing**: Fixes the `sizeOfParameters` method in ClassFileWriter to properly parse object signatures in arrays, preventing parsing failures when object types appear within array signatures like `[Ljava/lang/String;`
 
@@ -98,7 +101,7 @@ The mod includes a configuration file that can be accessed through the mod menu.
   - `patches.create_sa.fluid_handler_capabilities_enabled` (default: true)
   - Controls fluid capability registration for gadgets and tanks
   
-Note: Copper Age Backport, Subtle Effects, and Rhino patches only apply to specific versions or load too early in the process to access configuration, so they cannot be disabled through config files.
+Note: Copper Age Backport, Subtle Effects, Rhino, and Farmers Delight patches only apply to specific versions or load too early in the process to access configuration, so they cannot be disabled through config files.
 
 ### General Settings
 - **Debug logging settings**: Various logging options for development

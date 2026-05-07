@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "copperagebackport.GH48.ModItemsMixin",
+    "farmersdelight.tag_load_order.ModTagsMixin",
     "kubejs.GH972.KubeJSModEventHandlerMixin",
     "kubejs.GH972.ServerScriptManagerMixin",
     "portabletanks.GH12.PortableTankItemMixin",

@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2026-05-07
+
+### Added
+- Farmers Delight tag load-order fix
+  - ModTagsMixin: Repairs deprecated top-level tag references in `vectorwing.farmersdelight.common.tag.ModTags` that capture `null` due to a class-init re-entry race
+  - Resolves occasional `NullPointerException` at random tick when downstream addons call `BlockState.is(ModTags.X)` on a deprecated outer reference (e.g. `MUSHROOM_COLONY_GROWABLE_ON`)
+  - Downstream symptom report: FungiDelight #8 (https://github.com/MehdiNoui/FungiDelight/issues/8)
+  - Upstream fix: FD commit `5f84f22` (slated for FD 1.3.2)
+  - Only loads for Farmers Delight `[1.3.1, 1.3.2)` — 1.3.0 lacks the deprecated outer fields and 1.3.2+ contains the upstream fix
+  - No configuration option available - patch runs during early class loading before config system initializes
+
+### Technical Details
+- `@Inject` at `RETURN` of `ModTags.<clinit>`; by that point the inner classes (`Blocks`, `Items`, `EntityTypes`) are fully initialized
+- `@Mutable @Shadow` declarations remove `final` on each of the 32 deprecated outer fields so they can be reassigned from outside `<clinit>`
+- Repair only reassigns fields that are currently `null`, leaving correctly-initialized fields untouched
+- New `TagKey` instances are constructed with the same `farmersdelight:<path>` resource location as the inner-class fields; `TagKey` uses value equality, so reconstructed keys are interchangeable with the originals
+
 ## [0.5.0] - 2025-12-14
 
 ### Added
