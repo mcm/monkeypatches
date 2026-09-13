@@ -53,6 +53,9 @@ These fixes have been implemented in upstream repositories but are not yet avail
 ### Patchouli Patches
 - **GH790 Registry Access Fix**: Fixes issues during book loading when custom book items are parsed before their mod has registered items. Uses level registry access when available, preventing spurious errors in the logs with mods like Ars Nouveau. ([docs/patches/patchouli_gh790_registry_access_fix.md](docs/patches/patchouli_gh790_registry_access_fix.md))
 
+### Satisfying Buttons Patches
+- **GH7 FancyMenu Render Background Fix**: Fixes a startup crash (`Critical injection failure: @WrapOperation annotation on render could not find any targets matching 'renderBackground(Lnet/minecraft/client/gui/GuiGraphics;)V'`) when Satisfying Buttons is used with FancyMenu 3.9.x, which changed the signature of `ExtendedButton.renderBackground`. Uses a MixinSquared annotation adjuster to retarget Satisfying Buttons' `FancyMenuButtonMixin` to the new method, keeping its fade-in button texture behavior. ([docs/patches/satisfyingbuttons_gh7_fancymenu_render_background.md](docs/patches/satisfyingbuttons_gh7_fancymenu_render_background.md))
+
 ### Subtle Effects Patches
 - **EndRemasteredCompat Fix**: Fixes NeoForge crashing with End Remastered installed by changing block ticker registration to use predicate-based registration instead of direct block access (applies to version 1.11.0 only)
 
@@ -101,7 +104,7 @@ The mod includes a configuration file that can be accessed through the mod menu.
   - `patches.create_sa.fluid_handler_capabilities_enabled` (default: true)
   - Controls fluid capability registration for gadgets and tanks
   
-Note: Copper Age Backport, Subtle Effects, Rhino, and Farmers Delight patches only apply to specific versions or load too early in the process to access configuration, so they cannot be disabled through config files.
+Note: Copper Age Backport, Subtle Effects, Rhino, Farmers Delight, and Satisfying Buttons patches only apply to specific versions or load too early in the process to access configuration, so they cannot be disabled through config files.
 
 ### General Settings
 - **Debug logging settings**: Various logging options for development

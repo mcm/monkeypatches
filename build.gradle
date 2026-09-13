@@ -48,6 +48,13 @@ repositories {
             includeGroup "me.fallenbreath"
         }
     }
+    maven {
+        name = 'Bawnorton Maven'
+        url = 'https://maven.bawnorton.com/releases'
+        content {
+            includeGroup "com.github.bawnorton.mixinsquared"
+        }
+    }
     exclusiveContent {
         forRepository {
             maven {
@@ -140,6 +147,11 @@ dependencies {
     implementation "me.fallenbreath:conditional-mixin-neoforge:0.6.4"
     runtimeOnly "me.fallenbreath:conditional-mixin-neoforge:0.6.4"
     jarJar "me.fallenbreath:conditional-mixin-neoforge:0.6.4"
+
+    // MixinSquared for adjusting other mods' mixin annotations
+    compileOnly "com.github.bawnorton.mixinsquared:mixinsquared-common:0.3.4"
+    implementation "com.github.bawnorton.mixinsquared:mixinsquared-neoforge:0.3.4"
+    jarJar "com.github.bawnorton.mixinsquared:mixinsquared-neoforge:0.3.4"
 
     compileOnly "dev.latvian.mods:kubejs-neoforge:${kubejs_version}"
     compileOnly "curse.maven:create-stuff-additions-466792:6448012"

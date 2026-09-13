@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-09-13
+
+### Added
+- Satisfying Buttons GH7 patch for FancyMenu 3.9.x compatibility
+  - FancyMenuButtonMixinAdjuster: Retargets the `@WrapOperation` in Satisfying Buttons' `FancyMenuButtonMixin` from `renderBackground(GuiGraphics)` to `renderBackground`, matching FancyMenu's new `renderBackground(GuiGraphics, float)` signature
+  - Resolves the startup crash `Critical injection failure: @WrapOperation annotation on render could not find any targets matching 'renderBackground(Lnet/minecraft/client/gui/GuiGraphics;)V'`
+  - Issue: https://github.com/txnimc/SatisfyingButtons/issues/7
+  - Only rewrites the selector when it still has the broken value, so it is a no-op once fixed upstream
+  - No configuration option available - adjusters run while mixin configs load, before the config system initializes
+
+### Technical Details
+- Added MixinSquared 0.3.4 (bundled via jarJar) to adjust another mod's mixin annotations
+- Adjuster is registered through `META-INF/services/com.bawnorton.mixinsquared.api.MixinAnnotationAdjuster`
+
 ## [0.6.0] - 2026-05-07
 
 ### Added
