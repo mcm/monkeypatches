@@ -44,7 +44,7 @@ A regular mixin can't fix this, because the broken selector is in another mod's 
 - A `method` entry is only rewritten if it exactly matches `renderBackground(Lnet/minecraft/client/gui/GuiGraphics;)V`, so the adjuster becomes a no-op if Satisfying Buttons changes the selector upstream
 
 ### Dependencies
-- MixinSquared 0.3.4 (`mixinsquared-neoforge`), bundled via jarJar
+- MixinSquared 0.3.3 (`mixinsquared-neoforge`), bundled via jarJar and resolved from the enjarai mirror (`https://maven.enjarai.dev/mirrors`)
 
 ## Configuration
 

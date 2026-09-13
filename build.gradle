@@ -49,8 +49,8 @@ repositories {
         }
     }
     maven {
-        name = 'Bawnorton Maven'
-        url = 'https://maven.bawnorton.com/releases'
+        name = 'enjarai Maven (MixinSquared mirror)'
+        url = 'https://maven.enjarai.dev/mirrors'
         content {
             includeGroup "com.github.bawnorton.mixinsquared"
         }
@@ -149,9 +149,9 @@ dependencies {
     jarJar "me.fallenbreath:conditional-mixin-neoforge:0.6.4"
 
     // MixinSquared for adjusting other mods' mixin annotations
-    compileOnly "com.github.bawnorton.mixinsquared:mixinsquared-common:0.3.4"
-    implementation "com.github.bawnorton.mixinsquared:mixinsquared-neoforge:0.3.4"
-    jarJar "com.github.bawnorton.mixinsquared:mixinsquared-neoforge:0.3.4"
+    compileOnly "com.github.bawnorton.mixinsquared:mixinsquared-common:0.3.3"
+    implementation "com.github.bawnorton.mixinsquared:mixinsquared-neoforge:0.3.3"
+    jarJar "com.github.bawnorton.mixinsquared:mixinsquared-neoforge:0.3.3"
 
     compileOnly "dev.latvian.mods:kubejs-neoforge:${kubejs_version}"
     compileOnly "curse.maven:create-stuff-additions-466792:6448012"

@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - No configuration option available - adjusters run while mixin configs load, before the config system initializes
 
 ### Technical Details
-- Added MixinSquared 0.3.4 (bundled via jarJar) to adjust another mod's mixin annotations
+- Added MixinSquared 0.3.3 (bundled via jarJar, resolved from the enjarai mirror) to adjust another mod's mixin annotations
 - Adjuster is registered through `META-INF/services/com.bawnorton.mixinsquared.api.MixinAnnotationAdjuster`
 
 ## [0.6.0] - 2026-05-07
