@@ -98,6 +98,22 @@ public class Config {
                 BUILDER.pop(); // patchouli
         }
 
+        // Physics Mod patches
+        static {
+                BUILDER.comment("Physics Mod Patches")
+                                .comment("Patches for Physics Mod")
+                                .push("physicsmod");
+        }
+
+        public static final ModConfigSpec.BooleanValue PHYSICSMOD_VINE_UNLOAD_ENABLED = BUILDER
+                        .comment("Enable Physics Mod vine unload fix")
+                        .comment("Prevents crashes when vine physics objects are removed after their physics world was destroyed")
+                        .define("vine_unload_fix_enabled", true);
+
+        static {
+                BUILDER.pop(); // physicsmod
+        }
+
         // Future mod patches can be added here
         // Example:
         // static {
@@ -159,6 +175,13 @@ public class Config {
                  */
                 public static boolean isPatchouliGH790Enabled() {
                         return PATCHOULI_GH790_ENABLED.get();
+                }
+
+                /**
+                 * Check if the Physics Mod vine unload fix is enabled
+                 */
+                public static boolean isPhysicsModVineUnloadEnabled() {
+                        return PHYSICSMOD_VINE_UNLOAD_ENABLED.get();
                 }
 
                 // Future patch check methods can be added here

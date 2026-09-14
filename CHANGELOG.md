@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.1] - 2026-09-14
+
+### Added
+- Physics Mod vine unload fix
+  - DoublyLinkedListMixin: Skips `removeNode` for nodes that aren't linked into the list, and detaches all nodes in `clear()`
+  - Resolves `NullPointerException: Cannot assign field "next" because "node.prev" is null` in `net.diebuddies.util.DoublyLinkedList.removeNode` when Sodium deletes chunk sections with vine physics (e.g. at the end of a resource pack reload), and the follow-up `IllegalStateException: Worker threads are not running` crash
+  - Not reported upstream (Physics Mod Pro is closed source)
+  - Only loads for Physics Mod `3.0.32` (Pro v185)
+  - Configuration option: `patches.physicsmod.vine_unload_fix_enabled` (default: true)
+
+### Technical Details
+- `PhysicsWorld.destroy()` calls `DoublyLinkedList.clear()`, which drops `head`/`tail` but leaves nodes linked and stored on their elements; removing the old first element later takes the middle-node branch with a `null` `prev`
+- Physics Mod isn't available at compile time: the `Node` parameter is taken as `@Coerce Object`, and `LinkedListGuard` reaches private fields through a `MethodHandles.Lookup` created inside the target class
+
 ## [0.7.0] - 2026-09-13
 
 ### Added

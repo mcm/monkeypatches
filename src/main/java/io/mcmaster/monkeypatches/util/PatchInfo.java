@@ -96,6 +96,14 @@ public class PatchInfo {
                 "Fixes registry access issues during book loading",
                 io.mcmaster.monkeypatches.Config.PatchConfig.isPatchouliGH790Enabled()));
 
+        // Physics Mod patches
+        logPatchGroup(new PatchGroup(
+                "Physics Mod",
+                "physicsmod",
+                "Vine Unload",
+                "Prevents vine physics crashes when chunk sections are unloaded",
+                io.mcmaster.monkeypatches.Config.PatchConfig.isPhysicsModVineUnloadEnabled()));
+
         // Future patches can be logged here
 
         MonkeyPatches.LOGGER.info("=== End Patch Status ===");

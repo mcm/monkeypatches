@@ -65,6 +65,17 @@ public class MixinConditions {
                 Config.PatchConfig.isPatchouliGH790Enabled();
     }
 
+    /**
+     * Returns whether the Physics Mod vine unload fix should be applied.
+     * Used in @Inject mixins on Physics Mod's DoublyLinkedList.
+     * 
+     * Checks both mod loading and configuration.
+     */
+    public static boolean shouldApplyPhysicsModVineUnload() {
+        return ModList.get().isLoaded("physicsmod") &&
+                Config.PatchConfig.isPhysicsModVineUnloadEnabled();
+    }
+
     // Future condition methods can be added here
     // Example:
     // public static boolean shouldApplySomeOtherModIssue() {

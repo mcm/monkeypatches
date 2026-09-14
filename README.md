@@ -50,6 +50,9 @@ These fixes have been implemented in upstream repositories but are not yet avail
 ### PortableTanks Patches
 - **GH12 Null Compound Fix**: Fixes NullPointerException when accessing fluid data from ItemStacks without proper NBT data
 
+### Physics Mod Patches
+- **Vine Unload Fix**: Fixes a crash in Physics Mod 3.0.32 (Pro v185) when Sodium deletes chunk sections that still track vine physics objects, such as at the end of a resource pack reload (`NullPointerException: Cannot assign field "next" because "node.prev" is null`, followed by `IllegalStateException: Worker threads are not running`). Physics Mod's `DoublyLinkedList.clear()` left stale nodes behind; the patch skips removing nodes that aren't linked into the list and detaches nodes when the list is cleared. ([docs/patches/physicsmod_vine_unload_linked_list.md](docs/patches/physicsmod_vine_unload_linked_list.md))
+
 ### Patchouli Patches
 - **GH790 Registry Access Fix**: Fixes issues during book loading when custom book items are parsed before their mod has registered items. Uses level registry access when available, preventing spurious errors in the logs with mods like Ars Nouveau. ([docs/patches/patchouli_gh790_registry_access_fix.md](docs/patches/patchouli_gh790_registry_access_fix.md))
 
@@ -99,6 +102,10 @@ The mod includes a configuration file that can be accessed through the mod menu.
 - **Patchouli GH790 Patches**: Enable/disable the Patchouli issue #790 patches
   - `patches.patchouli.gh790_enabled` (default: true)
   - Controls BookMixin for registry access fix during book loading
+
+- **Physics Mod Vine Unload Fix**: Enable/disable the Physics Mod vine unload fix
+  - `patches.physicsmod.vine_unload_fix_enabled` (default: true)
+  - Controls DoublyLinkedListMixin stale node handling
 
 - **Create Stuff 'N Additions CF59 Capabilities**: Enable/disable Create Stuff 'N Additions fluid handler capabilities
   - `patches.create_sa.fluid_handler_capabilities_enabled` (default: true)

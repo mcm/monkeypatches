@@ -63,3 +63,13 @@
 		# Fixes CommandSyntaxException when loading custom book items before mod registration
 		# Status in logs: ENABLED / DISABLED / MOD NOT LOADED
 		gh790_enabled = true
+
+	# Physics Mod Patches
+	# Patches for Physics Mod
+	# These patches will only load if Physics Mod 3.0.32 is installed
+	[patches.physicsmod]
+		# Enable Physics Mod vine unload fix
+		# Prevents crashes when vine physics objects are removed after their physics world was destroyed
+		# Fixes "Cannot assign field \"next\" because \"node.prev\" is null" during resource pack reloads with Sodium
+		# Status in logs: ENABLED / DISABLED / MOD NOT LOADED
+		vine_unload_fix_enabled = true
